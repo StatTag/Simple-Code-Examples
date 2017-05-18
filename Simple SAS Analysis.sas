@@ -38,9 +38,8 @@ Proc Freq Data = Analysis;
 	ods output onewayfreqs = DrugDose;
 Run;
 
-
 **>>>ST:Table(Label="Simple Table", Frequency="Always", Type="Default");
-ods csv file = "S:\NUCATS\NUCATS_Shared\BERDShared\Analysis Manager\Data and Programs\Easy Code Examples\DrugDose.csv";
+ods csv file = "%qsubstr(%sysget(SAS_EXECFILEPATH),1,%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILEname)))DrugDose.csv";
 Proc Print Data = DrugDose Noobs; 
 	Var DrugDose Frequency Percent;
 Run;
@@ -49,7 +48,7 @@ ods csv close;
 
 *A plot looking at the relationship between age and PctBodyFat1;
 **>>>ST:Figure(Label="Age vs Body Fat", Frequency="Always");
-ods pdf file = "S:\NUCATS\NUCATS_Shared\BERDShared\Analysis Manager\Data and Programs\Easy Code Examples\Body Fat Age.pdf";
+ods pdf file = "%qsubstr(%sysget(SAS_EXECFILEPATH),1,%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILEname)))Body Fat Age.pdf";
 Proc SgPlot Data = Analysis;
 	Scatter x=age y=pctbodyfat1;
 Run;
