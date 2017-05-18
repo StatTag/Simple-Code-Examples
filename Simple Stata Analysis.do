@@ -28,14 +28,15 @@ tabulate agegrp, matcell(x)
 matrix list x
 **<<<
 
+local dir `c(pwd)'
+
 *Graph of BP before by agegrp
 **>>>ST:Figure(Label="BP by Age Group", Frequency="Always")
 graph box bp_before, over(agegrp) title("Blood Pressure by Age Group")
-graph export "S:\NUCATS\NUCATS_Shared\BERDShared\Analysis Manager\Data and Programs\Stata\Examples\BloodPressurebyAgeGroup.pdf", as(pdf) replace
+graph export "`c(pwd)'\BloodPressurebyAgeGroup.pdf", as(pdf) replace
 **<<<
 
 *Model of relationship between bloodpressure anf age group
-
 **>>>ST:Verbatim(Label="Univariate Model", Frequency="Always")
 xi: regress bp_before i.agegrp
 **<<<
